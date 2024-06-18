@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import "./App.css";
+import "./App.scss";
 
 export function App() {
   const [count, setCount] = useState(0);
@@ -10,7 +10,9 @@ export function App() {
   return (
     <>
       <div>Hello React and webpack!</div>
-      <button onClick={handleIncrement}>inc!</button>
+      <button onClick={handleIncrement}>
+        inc <span>+++</span>
+      </button>
       <div>count: {count}</div>
     </>
   );
