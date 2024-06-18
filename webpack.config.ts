@@ -1,9 +1,17 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+import path from "path";
 
-const path = require("path");
+import webpack from "webpack";
 
-module.exports = (env) => {
-  return {
+import HtmlWebpackPlugin from "html-webpack-plugin";
+
+type Mode = "production" | "development";
+
+interface EnvVariables {
+  mode: Mode;
+}
+
+export default (env: EnvVariables) => {
+  const config: webpack.Configuration = {
     mode: env.mode ?? "development",
 
     // місце входу, звідки почнеться збірка
@@ -40,4 +48,6 @@ module.exports = (env) => {
       }),
     ],
   };
+
+  return config;
 };
