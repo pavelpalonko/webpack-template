@@ -4,7 +4,10 @@
     "noImplicitAny": true,
     "module": "ESNext",
     "target": "es5",
-    "jsx": "react",
+
+    // дозволяє не імортувати "React" у файлах які використовують jsx розмітку
+    "jsx": "react-jsx",
+
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,

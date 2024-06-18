@@ -21,7 +21,7 @@ export default (env: EnvVariables) => {
 
     // місце входу, звідки почнеться збірка
     // є можливість додати кілька точок входу - { piont: path.resolve(...) }
-    entry: path.resolve(__dirname, "src", "index.ts"),
+    entry: path.resolve(__dirname, "src", "index.tsx"),
 
     // місце в яке буде проведено збірку
     output: {
@@ -37,6 +37,8 @@ export default (env: EnvVariables) => {
     module: {
       rules: [
         {
+          // ts-loader вміє працювати з jsx
+          // якби ми не використовували typescript - потрібно було б використовувати babel-loader
           test: /\.tsx?$/,
           use: "ts-loader",
           exclude: /node_modules/,
@@ -48,11 +50,13 @@ export default (env: EnvVariables) => {
     },
 
     plugins: [
+      // плагін для атоматичного формування html файлу з скриптами
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "public", "index.html"),
       }),
     ],
 
+    // сервер на якому буде працювати вебпак для динамчіного відображення змін
     devServer: isDevMode
       ? {
           port: env.port ?? 3000,
