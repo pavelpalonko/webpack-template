@@ -4,6 +4,8 @@ import webpack from "webpack";
 
 import HtmlWebpackPlugin from "html-webpack-plugin";
 
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+
 import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
 
 type Mode = "production" | "development";
@@ -41,7 +43,7 @@ export default (env: EnvVariables) => {
           test: /\.s[ac]ss$/i,
           use: [
             // Creates `style` nodes from JS strings
-            "style-loader",
+            MiniCssExtractPlugin.loader, // заміняємо "style.loader" на "MiniCssExtractPlugin.loader"  для винесення css файлів у окремі чанки
             // Translates CSS into CommonJS
             "css-loader",
             // Compiles Sass to CSS
@@ -66,6 +68,12 @@ export default (env: EnvVariables) => {
       // плагін для атоматичного формування html файлу з скриптами
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "public", "index.html"),
+      }),
+
+      // для винесення css файлів у окремі чанки
+      new MiniCssExtractPlugin({
+        filename: "css/[name].[contenthash].css",
+        chunkFilename: "css/[name].[contenthash].css",
       }),
     ],
 
