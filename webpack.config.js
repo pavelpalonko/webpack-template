@@ -1,3 +1,5 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 const path = require("path");
 
 module.exports = (env) => {
@@ -18,5 +20,11 @@ module.exports = (env) => {
       // очистка папки "build" перед збіркою.
       clean: true,
     },
+
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, "public", "index.html"),
+      }),
+    ],
   };
 };
