@@ -8,7 +8,7 @@ module.exports = (env) => {
 
     // місце входу, звідки почнеться збірка
     // є можливість додати кілька точок входу - { piont: path.resolve(...) }
-    entry: path.resolve(__dirname, "src", "index.js"),
+    entry: path.resolve(__dirname, "src", "index.ts"),
 
     // місце в яке буде проведено збірку
     output: {
@@ -19,6 +19,19 @@ module.exports = (env) => {
 
       // очистка папки "build" перед збіркою.
       clean: true,
+    },
+
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          use: "ts-loader",
+          exclude: /node_modules/,
+        },
+      ],
+    },
+    resolve: {
+      extensions: [".tsx", ".ts", ".js"],
     },
 
     plugins: [
