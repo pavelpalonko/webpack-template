@@ -35,7 +35,13 @@ export default (env: EnvVariables) => {
     },
 
     module: {
+      // порядок має значення!!!
       rules: [
+        {
+          test: /\.css$/i,
+          use: ["style-loader", "css-loader"],
+        },
+
         {
           // ts-loader вміє працювати з jsx
           // якби ми не використовували typescript - потрібно було б використовувати babel-loader
