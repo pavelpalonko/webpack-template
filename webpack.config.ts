@@ -3,8 +3,8 @@ import path from "path";
 import webpack from "webpack";
 
 import HtmlWebpackPlugin from "html-webpack-plugin";
-
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 
 import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
 
@@ -13,6 +13,7 @@ type Mode = "production" | "development";
 interface EnvVariables {
   mode: Mode;
   port: number;
+  analyze?: boolean;
 }
 
 export default (env: EnvVariables) => {
@@ -31,6 +32,8 @@ export default (env: EnvVariables) => {
 
       // [name], [contenthash] - динамічна назва файлу та хеш, в залежносіт від змісту файлу
       filename: "[name].[contenthash].js",
+
+      chunkFilename: "[name].chunk.[contenthash].js",
 
       // очистка папки "build" перед збіркою.
       clean: true,
@@ -88,13 +91,17 @@ export default (env: EnvVariables) => {
         filename: "css/[name].[contenthash].css",
         chunkFilename: "css/[name].[contenthash].css",
       }),
-    ],
+
+      env.analyze && new BundleAnalyzerPlugin(),
+    ].filter(Boolean),
 
     // сервер на якому буде працювати вебпак для динамчіного відображення змін
     devServer: isDevMode
       ? {
           port: env.port ?? 3000,
           open: true,
+          // для роботи роутінгу тільки (для dev serve)
+          historyApiFallback: true,
         }
       : undefined,
   };
