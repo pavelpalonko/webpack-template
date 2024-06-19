@@ -1,7 +1,12 @@
-button {
+.button {
   background-color: green;
 
   span {
     color: red;
   }
+}
+
+.open {
+  width: 25px;
+  height: 25px;
 }

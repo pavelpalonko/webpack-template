@@ -44,8 +44,21 @@ export default (env: EnvVariables) => {
           use: [
             // Creates `style` nodes from JS strings
             MiniCssExtractPlugin.loader, // заміняємо "style.loader" на "MiniCssExtractPlugin.loader"  для винесення css файлів у окремі чанки
+
             // Translates CSS into CommonJS
-            "css-loader",
+            {
+              loader: "css-loader",
+
+              // налаштування назв класів для різних режимів збірки
+              options: {
+                modules: {
+                  localIdentName: isDevMode
+                    ? "[path][name]__[local]--[hash:base64:6]"
+                    : "[hash:base64:6]",
+                },
+              },
+            },
+
             // Compiles Sass to CSS
             "sass-loader",
           ],
