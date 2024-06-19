@@ -3,6 +3,8 @@ import { Suspense, lazy } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
+// import lod from "lodash";
+
 import { App } from "./components/App";
 
 // simple load page
@@ -14,6 +16,8 @@ const LazyShop = lazy(() => import("./pages/Shop"));
 const LazyAbout = lazy(() => import("./pages/About"));
 
 const root = document.getElementById("root");
+
+// console.log(lod);
 
 const router = createBrowserRouter([
   {

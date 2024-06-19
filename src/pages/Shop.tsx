@@ -1,7 +1,13 @@
+import { uniqueId } from "lodash";
+
 export default function Shop() {
+  const un = uniqueId("pref--");
+
   return (
     <div>
       <h1>Shop+</h1>
+
+      <div>{un}</div>
 
       <div>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio

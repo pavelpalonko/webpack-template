@@ -39,6 +39,24 @@ export default (env: EnvVariables) => {
       clean: true,
     },
 
+    // кастомне налаштування розділення чанків
+    optimization: {
+      splitChunks: {
+        maxInitialRequests: 3,
+        minSize: 20000,
+        minRemainingSize: 0,
+        chunks: "async",
+        cacheGroups: {
+          lodash: {
+            test: /[\\/]node_modules[\\/]lodash[\\/].*/,
+            name: "lodash",
+            chunks: "all",
+            enforce: true,
+          },
+        },
+      },
+    },
+
     module: {
       // порядок має значення!!!
       rules: [

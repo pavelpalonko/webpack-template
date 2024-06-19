@@ -1,7 +1,13 @@
+// import { uniqueId } from "lodash";
+
 export default function About() {
+  // const un = uniqueId("prefff--");
+
   return (
     <main>
       <h1>About</h1>
+
+      {/* <div>{un}</div> */}
 
       <section>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
