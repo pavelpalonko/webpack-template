@@ -1,5 +1,7 @@
 // import { uniqueId } from "lodash";
 
+import { AliasTemplate } from "@/components/temp-a-p/folder/folder-next/alias-template";
+
 export default function About() {
   // const un = uniqueId("prefff--");
 
@@ -8,6 +10,8 @@ export default function About() {
       <h1>About</h1>
 
       {/* <div>{un}</div> */}
+
+      <AliasTemplate />
 
       <section>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate

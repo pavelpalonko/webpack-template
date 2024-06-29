@@ -96,6 +96,9 @@ export default (env: EnvVariables) => {
     },
     resolve: {
       extensions: [".tsx", ".ts", ".js"],
+      alias: {
+        "@": path.resolve(__dirname, "src"),
+      },
     },
 
     plugins: [
